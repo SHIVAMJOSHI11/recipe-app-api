@@ -1,14 +1,22 @@
+#Docker Compose files typically consist of one or more service that's needed for your application.
+#docker compose ka version
 version: "3.9"
 
 services:
+#app is name of service
   app:
     build:
+      #So the context that we're going to use for app service is the root directory that we're running the command from.
       context: .
       args:
         - DEV=true
+        #So this maps port 8000 on our local machine to port 8000 inside our Docker container.
     ports:
       - "8000:8000"
+    #So we're mapping the app directory that we created in the project to /app inside our container. 
+    #The reason we add this is because we want the updates that we make to our code in our local project to be reflected in the running container in real time. So we don't want to have to rebuild the container. Every time we change a line of code, we want to automatically sync the code in our project to the cloud running in the container.
     volumes:
       - ./app:/app
+    #So this is going to be the command that's used to run the service.  
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"

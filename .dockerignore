@@ -1,15 +1,18 @@
+#So when you run the doc image, it uses something called the Docker context, which is in the directory that you're running from,And all of the files are passed into the context except for the files that you list in Docker ignore.
 # Git
 .git
 .gitignore
 
-# Docker
+# Docker,hidden file not req to build image
 .docker
 
-# Python
+# Python 
+#the pycache that would be created on our local machine would maybe be specifically for our operating system and not for the Alpine operating system. The reason why I do this Asterix here is just to make sure that all of the different PI cache files may be removed. So you need to specify each subdirectory individually, which is what I've done here
 app/__pycache__/
 app/*/__pycache__/
 app/*/*/__pycache__/
 app/*/*/*/__pycache__/
+#So we want to remove any virtual environments that we may create locally in our projects from the context because they don't need to be copied over.We already have a virtual environment that we add in our Docker file
 .env/
 .venv/
 venv/

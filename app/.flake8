@@ -1,4 +1,4 @@
-
+#flake8 ko batare hai ki infiles ke code ko maat dekho
 [flake8]
 exclude =
   migrations,
